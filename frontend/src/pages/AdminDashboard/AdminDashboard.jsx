@@ -1,6 +1,22 @@
-import MainAdminDashboard from '../../features/dashboard/components/MainAdminDashboard/MainAdminDashboard'
-import ManageBlogs from '../../features/dashboard/components/ManageBlogs/ManageBlogs';
+// // import MainAdminDashboard from '../../features/dashboard/components/MainAdminDashboard/MainAdminDashboard'
+// import ManageBlogs from "../../features/dashboard/components/ManageBlogs/ManageBlogs.jsx";
+// import MainAdminDashboard from "../../features/dashboard/components/MainAdminDashboard/MainAdminDashboard.jsx";
 
+
+
+// const AdminDashboard = () => {
+//   return (
+//     <>
+//       <MainAdminDashboard />
+//       <ManageBlogs />
+//     </>
+//   );
+// }
+
+// export default AdminDashboard
+
+import ManageBlogs from "../../features/dashboard/components/ManageBlogs/ManageBlogs.jsx";
+import MainAdminDashboard from "../../features/dashboard/components/MainAdminDashboard/MainAdminDashboard.jsx";
 
 const AdminDashboard = () => {
   return (
@@ -9,6 +25,6 @@ const AdminDashboard = () => {
       <ManageBlogs />
     </>
   );
-}
+};
 
-export default AdminDashboard
+export default AdminDashboard;
