@@ -1,28 +1,16 @@
-// // import MainAdminDashboard from '../../features/dashboard/components/MainAdminDashboard/MainAdminDashboard'
-// import ManageBlogs from "../../features/dashboard/components/ManageBlogs/ManageBlogs.jsx";
-// import MainAdminDashboard from "../../features/dashboard/components/MainAdminDashboard/MainAdminDashboard.jsx";
-
-
-
-// const AdminDashboard = () => {
-//   return (
-//     <>
-//       <MainAdminDashboard />
-//       <ManageBlogs />
-//     </>
-//   );
-// }
-
-// export default AdminDashboard
-
-import ManageBlogs from "../../features/dashboard/components/ManageBlogs/ManageBlogs.jsx";
-import MainAdminDashboard from "../../features/dashboard/components/MainAdminDashboard/MainAdminDashboard.jsx";
+import SideBar from "../../features/dashboard/components/SideBar/SideBar";
+import { sidebarConfig } from "../../constants/appConfig/sidebarConfig/sidebarConfig";
+import MainAdminDashboard from "../../features/dashboard/components/MainAdminDashboard/MainAdminDashboard";
+import BackToTop from "../../shared/components/BackToTop/BackToTop";
+// import ManageBlogs from "../../features/dashboard/components/ManageBlogs/ManageBlogs";
 
 const AdminDashboard = () => {
   return (
     <>
+      <SideBar sidebarConfig={sidebarConfig?.dashboardSidebar} />
       <MainAdminDashboard />
-      <ManageBlogs />
+      <BackToTop />
+      {/* <ManageBlogs /> */}
     </>
   );
 };
