@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import styles from "./StoryBoard.module.css";
 import { MdChevronRight } from "react-icons/md";
 
+
 const StoryBoard = ({ title, subtitle, btnText, btnPath, bgImage }) => {
   return (
     <section
