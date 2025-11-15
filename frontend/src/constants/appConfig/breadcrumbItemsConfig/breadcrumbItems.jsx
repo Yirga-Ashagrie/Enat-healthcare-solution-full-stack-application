@@ -6,20 +6,26 @@ import {
   MdOutlineHelp,
 } from "react-icons/md";
 import { BsArrowRepeat, BsBlockquoteLeft } from "react-icons/bs";
-
+import { AiOutlineUsergroupAdd } from "react-icons/ai";
 
 // Define common breadcrumb items
 const commonDashboardBreadcrumbItems = [
   { label: "Dashboard", path: "/dashboard", behindIcon: <MdDashboard /> },
 ];
 
-
-
 // Export the structured breadcrumb items, reusing common items
 export const breadcrumbItems = {
   dashboard: {
     dashboard: [
       ...commonDashboardBreadcrumbItems, // Reuse common breadcrumb items
+    ],
+    addEmployee: [
+      ...commonDashboardBreadcrumbItems,
+      {
+        label: "Add Employee",
+        path: "/dashboard/sign-up",
+        behindIcon: <AiOutlineUsergroupAdd />,
+      },
     ],
     role: [
       ...commonDashboardBreadcrumbItems, // Reuse common breadcrumb items
@@ -77,5 +83,5 @@ export const breadcrumbItems = {
         behindIcon: <BsBlockquoteLeft />,
       },
     ],
-    },
+  },
 };
