@@ -976,4 +976,289 @@
       "error": "Internal Server Error",
       "message": "Something went wrong! Please try again later."
     }
- 
+
+
+    **Enat Healthcare Services API Documentation**
+
+    Base Information
+
+    Base URL: enathealthcare.com/ or localhost:2411/
+
+    Content-Type: application/json
+
+
+
+**3.services API design **
+    3.1  GET api/services:           Get all services.
+    3.2  GET api/services/{service-id}: Get a specific service by ID.
+    3.3  POST api/services:          Create a new service.
+    3.4  PATCH api/services/{service-id}: Update a specific service by Id.
+    3.5  DELETE api/services/{service-id}: Delete a specific service by Id.
+
+**3.Services API DOCS**
+
+3.1 Get All Services
+
+Endpoint: GET /api/services
+
+Description: Retrieves a list of all available services.
+
+Host/Base_URL: enathealthcare.com or localhost:2411
+
+Request:
+
+Authorization: Requires a valid access token (if implemented).
+
+Successful Response (200 OK):
+
+Content-Type: application/json
+
+Response Body:
+{
+  "success": "true",
+  "message": "Services retrieved successfully.",
+  "data": {
+    "services": [
+      {
+        "service_id": 1,
+        "service_icon_name": "fa-heartbeat",
+        "service_title": "Cardiology",
+        "service_subtitle": "Heart Care & Surgery",
+        "service_description": "Comprehensive care for patients with heart and vascular conditions.",
+        "created_at": "2024-08-01T09:00:00Z",
+        "updated_at": "2024-08-10T09:00:00Z"
+      },
+      {
+        "service_id": 2,
+        "service_icon_name": "fa-brain",
+        "service_title": "Neurology",
+        "service_subtitle": "Brain & Nervous System",
+        "service_description": "Expert diagnosis and treatment for neurological disorders.",
+        "created_at": "2024-08-02T10:30:00Z",
+        "updated_at": "2024-08-11T10:30:00Z"
+      }
+    ]
+  }
+}
+Error Responses:
+
+500 Internal Server Error: Server encountered an unexpected condition.
+
+{
+  "success": false,
+  "error": "Internal Server Error",
+  "message": "Something went wrong! Please try again later."
+}
+
+3.2 Get a Specific Service by ID
+
+Endpoint: GET /api/services/{service-id}
+
+Description: Retrieves details of a specific service identified by its ID.
+
+Host/Base_URL: enathealthcare.com or localhost:2411
+
+Request:
+
+Authorization: Requires a valid access token.
+
+URL Path Parameter:
+
+service-id (integer, required): The ID of the service to retrieve.
+
+Successful Response (200 OK):
+
+Content-Type: application/json
+
+Response Body:
+
+
+{
+  "success": "true",
+  "message": "Service retrieved successfully.",
+  "data": {
+    "service": {
+      "service_id": 1,
+      "service_icon_name": "fa-heartbeat",
+      "service_title": "Cardiology",
+      "service_subtitle": "Heart Care & Surgery",
+      "service_description": "Comprehensive care for patients with heart and vascular conditions.",
+      "created_at": "2024-08-01T09:00:00Z",
+      "updated_at": "2024-08-10T09:00:00Z"
+    }
+  }
+}
+
+Error Responses:
+
+400 Bad Request: Invalid service ID format.
+
+404 Not Found: The specified service does not exist.
+
+
+{
+  "success": false,
+  "error": "404 Not Found",
+  "message": "The service you are looking for was not found."
+}
+
+
+3.3 Create a New Service
+
+Endpoint: POST /api/services
+
+Description: Creates a new service record.
+
+Host/Base_URL: enathealthcare.com or localhost:2411
+
+Request:
+
+Authorization: Requires a valid access token with admin privileges.
+
+Content-Type: application/json
+
+Request Body:
+{
+  "service_icon_name": "fa-tooth",
+  "service_title": "Dental Care",
+  "service_subtitle": "Oral Health",
+  "service_description": "Professional dental services including cleaning, surgery, and cosmetics."
+}
+
+successful Response (201 Created):
+
+Content-Type: application/json
+
+Response Body:
+
+{
+  "success": "true",
+  "message": "Service created successfully.",
+  "data": {
+    "service": {
+      "service_id": 3,
+      "service_icon_name": "fa-tooth",
+      "service_title": "Dental Care",
+      "service_subtitle": "Oral Health",
+      "service_description": "Professional dental services including cleaning, surgery, and cosmetics.",
+      "created_at": "2024-08-25T14:00:00Z",
+      "updated_at": "2024-08-25T14:00:00Z"
+    }
+  }
+}
+
+Error Responses:
+
+400 Bad Request: Invalid input or missing required parameters (e.g., missing title).
+
+403 Forbidden: User does not have permission to create a service.
+{
+  "success": false,
+  "error": "Forbidden",
+  "message": "You do not have permission."
+}
+
+3.4 Update a Specific Service
+
+Endpoint: PATCH /api/services/{service-id}
+
+Description: Updates specific details of an existing service identified by its ID.
+
+Host/Base_URL: enathealthcare.com or localhost:2411
+
+Request:
+
+Authorization: Requires a valid access token with admin privileges.
+
+Content-Type: application/json
+
+URL Path Parameter:
+
+service-id (integer, required): The ID of the service to update.
+
+Request Body: (Can include one or all fields)
+
+
+{
+  "service_subtitle": "Advanced Oral Health",
+  "service_description": "Updated description for dental services."
+}
+
+Successful Response (200 OK):
+
+Content-Type: application/json
+
+Response Body:
+
+{
+  "success": "true",
+  "message": "Service updated successfully.",
+  "data": {
+    "service": {
+      "service_id": 3,
+      "service_icon_name": "fa-tooth",
+      "service_title": "Dental Care",
+      "service_subtitle": "Advanced Oral Health",
+      "service_description": "Updated description for dental services.",
+      "created_at": "2024-08-25T14:00:00Z",
+      "updated_at": "2024-08-26T09:00:00Z"
+    }
+  }
+}
+
+Error Responses:
+
+404 Not Found: The specified service does not exist.
+
+409 Conflict: The update causes a conflict (e.g., duplicate title if unique constraint exists).
+
+3.5 Delete a Specific Service
+
+Endpoint: DELETE /api/services/{service-id}
+
+Description: Deletes a service from the system (or marks it as deleted via deleted_at).
+
+Host/Base_URL: enathealthcare.com or localhost:2411
+
+Request:
+
+Authorization: Requires a valid access token with admin privileges.
+
+URL Path Parameter:
+
+service-id (integer, required): The ID of the service to delete.
+
+Successful Response (200 OK):
+
+Content-Type: application/json
+
+Response Body:
+
+{
+  "success": "true",
+  "message": "Service deleted successfully."
+}
+
+Error Responses:
+
+400 Bad Request: Invalid service ID format.
+
+401 Unauthorized: User is not authenticated.
+
+404 Not Found: The specified service does not exist.
+
+{
+  "success": false,
+  "error": "404 Not Found",
+  "message": "The service you are looking for was not found."
+}
+
+500 Internal Server Error:
+
+{
+  "success": false,
+  "error": "Internal Server Error",
+  "message": "Something went wrong! Please try again later."
+}
+
+

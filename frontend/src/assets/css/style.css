@@ -92,10 +92,19 @@ h6 {
 .hamburger-menu {
   display: flex;
   align-items: center;
+  background: var(--main-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+.hamburger-menu button.hamburger-btn {
+  outline: none;
+  border: none;
+  background: none;
 }
 .hamburger-menu i {
   font-size: 32px;
-  color: #12151fb9;
   padding: 4px 8px;
   background: transparent;
   border-radius: 4px;
@@ -104,7 +113,10 @@ h6 {
 }
 .hamburger-menu i:is(:hover, :focus) {
   background: var(--main-gradient);
-  color: #fff;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
 }
 
 /* ======= hero section css  ======= */
@@ -151,6 +163,7 @@ h6 {
   transition: var(--transition);
   border-radius: 4px;
   text-align: center;
+  white-space: nowrap;
 }
 .hero-content a.main-btn:hover {
   color: #fff;
@@ -160,19 +173,35 @@ h6 {
 .hero-content a.main-btn-light {
   display: block;
   color: #030a21;
-  border: 1px solid transparent;
-  border-image: var(--main-gradient) 1;
   font-family: var(--secondary-font-family);
   text-transform: capitalize;
   font-weight: 400;
   padding: 12px 24px !important;
   transition: var(--transition);
-  border-radius: 4px;
   margin-top: 12px;
   text-align: center;
+  border-radius: 4px;
+  border: 1px solid transparent; /* needed for border-box */
+  background:
+    /* inner background (button fill) */ linear-gradient(
+        #ffffff,
+        #ffffff
+      )
+      padding-box,
+    /* outer gradient border */ linear-gradient(to right, #244cfd, #15e4fd)
+      border-box;
 }
-.hero-content a.main-btn:hover {
-  color: #fff;
+.hero-content a.main-btn-light:hover {
+  background:
+    /* inner background (now gradient too) */ linear-gradient(
+        to right,
+        #244cfd,
+        #15e4fd
+      )
+      padding-box,
+    /* outer gradient border (same as before) */
+      linear-gradient(to right, #244cfd, #15e4fd) border-box;
+  color: #fff !important;
   opacity: 0.8;
 }
 
@@ -537,7 +566,8 @@ h6 {
 .container {
   max-width: 992px !important;
 }
-.not-found-page-section div.main-btn {
+.not-found-page-section div.main-btn,
+.unauthorized-section div.main-btn {
   display: block;
   width: 210px;
   color: #fff;
@@ -550,18 +580,21 @@ h6 {
   border-radius: 4px;
   text-align: center !;
 }
-.not-found-page-section div.main-btn a {
+.not-found-page-section div.main-btn a,
+.unauthorized-section div.main-btn a {
   color: #fff;
   text-align: center;
   max-width: none;
 }
-.not-found-page-section div.main-btn a:hover {
+.not-found-page-section div.main-btn a:hover,
+.unauthorized-section div.main-btn a:hover {
   color: #fff;
   opacity: 0.8;
 }
 
 /* mobile device footer css */
-.md-footer-links-wrapper h2, .md-footer-links-wrapper h4 {
+.md-footer-links-wrapper h2,
+.md-footer-links-wrapper h4 {
   color: #fff !important;
 }
 .md-footer-links-wrapper .accordion .accordion-item {
@@ -581,8 +614,6 @@ h6 {
 .md-footer-links-wrapper .accordion .accordion-button:not(.collapsed)::after {
   background-image: url("../icons/minus-icon.svg");
 }
-
-
 
 /* ======= media query css  ======= */
 
@@ -780,9 +811,10 @@ h6 {
     padding: 12px 24px !important;
     transition: var(--transition);
     border-radius: 4px;
+    white-space: nowrap;
   }
   .main-header .nav-items li a.main-btn:hover {
-    color: #fff;
+    color: #fff !important;
     opacity: 0.8;
   }
   /* ======= hamburger menu css =======  */
@@ -803,4 +835,42 @@ h6 {
   .services-section .service-container {
     margin: 0 auto;
   }
+}
+
+.mobile-nav-bar .nav-items li {
+  border-bottom: 1px solid #dadce0d1;
+  padding-block: 8px; /* optional – adds spacing */
+}
+.mobile-nav-bar .nav-items li:first-child {
+  padding-top: 0;
+}
+.mobile-nav-bar ul li a {
+  color: #111616 !important;
+  opacity: 0.75;
+}
+.mobile-nav-bar ul li a:focus {
+  opacity: 1;
+}
+.mobile-nav-bar .nav-items li a.main-btn {
+  color: #fff !important;
+  display: block;
+  width: 100%;
+  text-align: center;
+  background: var(--main-gradient);
+  font-family: var(--secondary-font-familly);
+  font-weight: 400;
+  padding: 12px 24px !important;
+  transition: var(--transition);
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.mobil-header-container .offcanvas-logo-wrapper {
+  background: #f9f9fd;
+  padding-block: 16px;
+  padding-inline: 16px;
+  box-shadow: 0 1px 6px #2021243d;
+}
+.mobil-header-container .offcanvas-logo-wrapper .btn-close:focus {
+  box-shadow: 0 0 0 0.125rem rgba(218, 220, 224, 0.81);
 }
